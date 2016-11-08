@@ -44,7 +44,7 @@ export function addClass(el, clazz) {
     return el;
 }
 
-export function toggleClass(el, clazz, force = false) {
+export function toggleClass(el, clazz, force = undefined) {
     el.classList.toggle(clazz, force);
     return el;
 }
