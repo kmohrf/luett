@@ -28,6 +28,17 @@ export function remove(el) {
     return el;
 }
 
+export function rect(el) {
+    const rect = el.getBoundingClientRect();
+
+    return {
+        top: window.pageYOffset + rect.top,
+        left: window.pageXOffset + rect.left,
+        width: rect.width,
+        height: rect.height
+    }
+}
+
 export function addClass(el, clazz) {
     el.classList.add(clazz);
     return el;
@@ -100,8 +111,8 @@ export function component(name, init, opts = {}) {
 }
 
 export default {
-    replace, index, remove,
     $, $$, id, component,
+    replace, index, remove, rect,
     addClass, toggleClass, removeClass,
     getAttr, setAttr, hasAttr
 }
