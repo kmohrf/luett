@@ -8,6 +8,10 @@ export function $$(selector, el = document) {
     return toArray(el.querySelectorAll(selector));
 }
 
+export function id(name, el = document) {
+    return el.getElementById(name);
+}
+
 export function replace(el_old, el_new) {
     el_old.parentNode.replaceChild(el_new, el_old);
     return el_new;
@@ -96,8 +100,8 @@ export function component(name, init, opts = {}) {
 }
 
 export default {
-    $, $$, component,
     replace, index, remove,
+    $, $$, id, component,
     addClass, toggleClass, removeClass,
     getAttr, setAttr, hasAttr
 }
