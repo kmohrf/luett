@@ -1,0 +1,21 @@
+{
+  "name": "luett",
+  "version": "0.1.0",
+  "description": "a collection of small vanilla-js utilities, helper functions and components",
+  "main": "dist/luett.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "rollup": "rollup -c .rollup.js",
+    "min": "uglifyjs dist/luett.js --output dist/luett.min.js --screw-ie8 --compress --mangle",
+    "build": "npm run rollup && npm run min",
+    "prepublish": "npm run build"
+  },
+  "author": "Konrad Mohrfeldt <konrad.mohrfeldt@farbdev.org>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.2.0",
+    "rollup": "^0.36.3",
+    "rollup-plugin-babel": "^2.6.1",
+    "rollup-plugin-json": "^2.0.2"
+  }
+}
