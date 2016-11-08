@@ -19,9 +19,9 @@ export function keyPressed(keyCode, modifiers, callback) {
             return;
         }
 
-        // correct modifiers
+        // correct modifiers?
         if(Object.keys(modifiers).reduce((result, name) => result && event[name] === modifiers[name], true) !== true) {
-            return
+            return;
         }
 
         callback.apply(this, arguments);
