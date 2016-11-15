@@ -91,8 +91,7 @@ export function component(name, init, opts = {}) {
 
     opts = opts instanceof HTMLElement ? { root: opts } : opts;
 
-    return $$(`[data-component~="${name}"]`, opts.root || document)
-        .filter(el => !el.hasAttribute("data-component-ready"))
+    return $$(`[data-component~="${name}"]:not([data-component-ready~="${name}"])`, opts.root || document)
         .map((el, index) => {
             const def = el.getAttribute("data-component").split(" ");
             const conf = Object.assign({}, init.DEFAULTS || {}, opts.conf || {}, parseConfig(el));
