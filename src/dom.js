@@ -71,6 +71,22 @@ export function hasAttr (el, name) {
   return el && el.hasAttribute(name)
 }
 
+export function insertElement (position, node, newNode) {
+  switch (position) {
+    case 'beforebegin':
+      node.parentNode.insertBefore(newNode, node)
+      break
+    case 'afterend':
+      node.parentNode.insertBefore(newNode, node.nextElementSibling)
+      break
+  }
+
+  return newNode
+}
+
+insertElement.before = (node, newNode) => insertElement('beforebegin', node, newNode)
+insertElement.after = (node, newNode) => insertElement('afterend', node, newNode)
+
 export function component (name, init, opts = {}) {
   function parseConfig (el) {
     const confMatcher = new RegExp(`data-(?:component|${name})-([^-]+)`, 'i')
@@ -127,5 +143,6 @@ export default {
   removeClass,
   getAttr,
   setAttr,
-  hasAttr
+  hasAttr,
+  insertElement
 }
