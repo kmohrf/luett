@@ -114,13 +114,14 @@ export function component (name, init, opts = {}) {
         .map((el, index) => {
           const def = el.getAttribute('data-component').split(' ')
           const conf = Object.assign({}, init.DEFAULTS || {}, opts.conf || {}, parseConfig(el))
+          const componentPrefix = `${name}-`
 
           const options = {
             index,
             conf,
-            isType (type) {
-              return def.indexOf(`${name}-${type}`) !== -1
-            }
+            types: def
+              .filter(name => name.indexOf(componentPrefix) === 0)
+              .map(name => name.substr(componentPrefix.length))
           }
 
           const component = init(el, options)
