@@ -48,4 +48,9 @@ matchesMedia.max.medium = matchesMedia.bind(null, '(max-width: 991px)')
 matchesMedia.max.large = matchesMedia.bind(null, '(max-width: 1199px)')
 matchesMedia.max.hd = matchesMedia.bind(null, '(max-width: 1919px)')
 
-export default { keyPressed, matchesMedia }
+export function on (el, event, callback, capture = false) {
+  el.addEventListener(event, callback, capture)
+  return { destroy: () => { el.removeEventListener(event, callback, capture) } }
+}
+
+export default { keyPressed, matchesMedia, on }
