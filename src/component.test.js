@@ -21,7 +21,6 @@ simpleComponent.DEFAULTS = { lang: 'es' }
 
 describe('component', () => {
   const components = component('foo', simpleComponent, simpleElement())
-  console.log(components.map((e) => e.types))
 
   it('accepts a name, looks for [data-component="$name"] elements and returns them initialized', () => {
     expect(components)
