@@ -87,54 +87,10 @@ export function insertElement (position, node, newNode) {
 insertElement.before = (node, newNode) => insertElement('beforebegin', node, newNode)
 insertElement.after = (node, newNode) => insertElement('afterend', node, newNode)
 
-export function component (name, init, opts = {}) {
-  function parseConfig (el) {
-    const confMatcher = new RegExp(`data-(?:component|${name})-([^-]+)`, 'i')
-    const defaultConf = {}
-
-    toArray(el.attributes).forEach(attr => {
-      const match = confMatcher.exec(attr.name)
-
-      if (confMatcher.test(attr.name)) {
-        defaultConf[match[1]] = attr.value
-      }
-    })
-
-    try {
-      const conf = JSON.parse(el.getAttribute('data-component-conf'))
-      return Object.assign(defaultConf, conf)
-    } catch (e) {
-      return defaultConf
-    }
-  }
-
-  opts = opts instanceof window.HTMLElement ? { root: opts } : opts
-
-  return $$(`[data-component~="${name}"]:not([data-component-ready~="${name}"])`, opts.root || document)
-        .map((el, index) => {
-          const def = el.getAttribute('data-component').split(' ')
-          const conf = Object.assign({}, init.DEFAULTS || {}, opts.conf || {}, parseConfig(el))
-          const componentPrefix = `${name}-`
-
-          const options = {
-            index,
-            conf,
-            types: def
-              .filter(name => name.indexOf(componentPrefix) === 0)
-              .map(name => name.substr(componentPrefix.length))
-          }
-
-          const component = init(el, options)
-          setAttr(el, 'data-component-ready', name, true)
-          return component
-        })
-}
-
 export default {
   $,
   $$,
   id,
-  component,
   replace,
   index,
   remove,
