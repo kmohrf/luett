@@ -4,7 +4,7 @@
   "description": "a collection of small vanilla-js utilities, helper functions and components",
   "main": "dist/luett.js",
   "scripts": {
-    "test": "standard",
+    "test": "rollup -c .rollup.test.js && mocha-phantomjs test.html && standard",
     "rollup": "rollup -c .rollup.js",
     "min": "uglifyjs dist/luett.js --output dist/luett.min.js --screw-ie8 --compress --mangle",
     "build": "npm run test && npm run rollup && npm run min",
@@ -13,10 +13,18 @@
   "author": "Konrad Mohrfeldt <konrad.mohrfeldt@farbdev.org>",
   "license": "MIT",
   "devDependencies": {
+    "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-es2015": "^6.24.1",
+    "bel": "^4.6.0",
+    "chai": "^3.5.0",
+    "core-js": "^2.4.1",
+    "mocha": "^3.2.0",
+    "mocha-phantomjs": "^4.1.0",
     "rollup": "^0.41.6",
     "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-commonjs": "^8.0.2",
     "rollup-plugin-json": "^2.1.1",
+    "rollup-plugin-node-resolve": "^3.0.0",
     "standard": "^10.0.1"
   }
 }
