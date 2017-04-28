@@ -42,18 +42,18 @@ export function rect (el) {
   }
 }
 
-export function addClass (el, clazz) {
-  el.classList.add(clazz)
+export function addClass (el, ...args) {
+  el.classList.add(...args)
   return el
 }
 
-export function toggleClass (el, clazz, force = undefined) {
-  el.classList.toggle(clazz, force)
+export function toggleClass (el, className, force = undefined) {
+  el.classList.toggle(className, force)
   return el
 }
 
-export function removeClass (el, clazz) {
-  el.classList.remove(clazz)
+export function removeClass (el, ...args) {
+  el.classList.remove(...args)
   return el
 }
 
