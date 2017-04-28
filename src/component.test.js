@@ -8,8 +8,8 @@ function simpleElement () {
   return bel`
     <div>
         <div id='foo-1' data-component='foo' data-foo-bar></div>
-        <div id='foo-2' data-component='foo' data-component-lang='de'></div>
-        <div id='foo-3' data-component='foo' data-component-lang='de' data-foo-lang='en'></div>
+        <div id='foo-2' data-component='foo' data-component-lang='de' data-component-lang-fallback='en'></div>
+        <div id='foo-3' data-component='foo' data-component-lang='de' data-foo-lang='en' data-foo-lang-fallback='es'></div>
     </div>`
 }
 
@@ -61,10 +61,12 @@ describe('component', () => {
 
     it('merges options provided via data-component-* attributes', () => {
       expect(components[1]).to.have.deep.property('opts.conf.lang', 'de')
+      expect(components[1]).to.have.deep.property('opts.conf.langFallback', 'en')
     })
 
     it('merges options provided via data-$name-* attributes', () => {
       expect(components[2]).to.have.deep.property('opts.conf.lang', 'en')
+      expect(components[2]).to.have.deep.property('opts.conf.langFallback', 'es')
     })
   })
 

@@ -1,15 +1,22 @@
 import { toArray } from './util'
 import { $$, setAttr } from './dom'
 
+function upperFirst (str) {
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
 function parseConfig (el, name) {
-  const confMatcher = new RegExp(`data-(?:component|${name})-([^-]+)`, 'i')
+  const confMatcher = new RegExp(`data-(?:component|${name})-(.+)`, 'i')
   const defaultConf = {}
 
   toArray(el.attributes).forEach(attr => {
     const match = confMatcher.exec(attr.name)
 
     if (confMatcher.test(attr.name)) {
-      defaultConf[match[1]] = attr.value
+      const name = match[1]
+        .split('-')
+        .reduce((name, part, idx) => name + (idx > 0 ? upperFirst(part) : part), '')
+      defaultConf[name] = attr.value
     }
   })
 
