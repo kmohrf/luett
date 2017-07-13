@@ -78,10 +78,7 @@ export function removeClass (el, ...args) {
 
 export function attr (name) {
   return {
-    get: (el, ...args) => {
-      getAttr(el, name, ...args)
-      return this
-    },
+    get: (el, ...args) => getAttr(el, name, ...args),
     set: (el, ...args) => {
       setAttr(el, name, ...args)
       return this
