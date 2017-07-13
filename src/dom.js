@@ -42,6 +42,25 @@ export function rect (el) {
   }
 }
 
+export function className (name) {
+  return {
+    add: (el, ...args) => {
+      addClass(el, args.concat(name))
+      return this
+    },
+    remove: (el, ...args) => {
+      removeClass(el, args.concat(name))
+      return this
+    },
+    toggle: (el, force = undefined) => {
+      toggleClass(el, name, force)
+      return this
+    },
+    selector: () => `.${name}`,
+    toString: () => name
+  }
+}
+
 export function addClass (el, ...args) {
   el.classList.add(...args)
   return el
@@ -55,6 +74,22 @@ export function toggleClass (el, className, force = undefined) {
 export function removeClass (el, ...args) {
   el.classList.remove(...args)
   return el
+}
+
+export function attr (name) {
+  return {
+    get: (el, ...args) => {
+      getAttr(el, name, ...args)
+      return this
+    },
+    set: (el, ...args) => {
+      setAttr(el, name, ...args)
+      return this
+    },
+    has: el => hasAttr(el, name),
+    selector: (value = undefined) => `[${name}${value ? `="${value}"` : ''}]`,
+    toString: () => name
+  }
 }
 
 export function getAttr (el, name, defaultValue = undefined) {
@@ -95,9 +130,11 @@ export default {
   index,
   remove,
   rect,
+  className,
   addClass,
   toggleClass,
   removeClass,
+  attr,
   getAttr,
   setAttr,
   hasAttr,
