@@ -45,11 +45,11 @@ export function rect (el) {
 export function className (name) {
   return {
     add: (el, ...args) => {
-      addClass(el, args.concat(name))
+      addClass(el, ...args.concat(name))
       return this
     },
     remove: (el, ...args) => {
-      removeClass(el, args.concat(name))
+      removeClass(el, ...args.concat(name))
       return this
     },
     toggle: (el, force = undefined) => {
