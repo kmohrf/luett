@@ -86,6 +86,10 @@ export function attr (name) {
       setAttr(el, name, ...args)
       return this
     },
+    remove: el => {
+      el.removeAttribute(name)
+      return this
+    },
     has: el => hasAttr(el, name),
     selector: (value = undefined) => `[${name}${value ? `="${value}"` : ''}]`,
     toString: () => name
