@@ -1,6 +1,6 @@
 {
   "name": "luett",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "a collection of small vanilla-js utilities, helper functions and components",
   "main": "dist/luett.js",
   "scripts": {
