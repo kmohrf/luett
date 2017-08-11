@@ -56,6 +56,9 @@ export function className (name) {
       toggleClass(el, name, force)
       return this
     },
+    has: el => {
+      return el.classList.contains(name)
+    },
     selector: () => `.${name}`,
     toString: () => name
   }
