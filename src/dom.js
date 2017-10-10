@@ -79,21 +79,32 @@ export function removeClass (el, ...args) {
   return el
 }
 
+const attr$ = $ => function (value = undefined, el = document) {
+  if (value instanceof window.HTMLElement) {
+    el = value
+    value = undefined
+  }
+  return $(this.selector(value), el)
+}
+
 export function attr (name) {
-  return {
+  const _attr = {
     get: (el, ...args) => getAttr(el, name, ...args),
     set: (el, ...args) => {
       setAttr(el, name, ...args)
-      return this
+      return _attr
     },
-    remove: el => {
+    remove: (el) => {
       el.removeAttribute(name)
-      return this
+      return _attr
     },
     has: el => hasAttr(el, name),
     selector: (value = undefined) => `[${name}${value ? `="${value}"` : ''}]`,
-    toString: () => name
+    toString: () => name,
+    $: attr$($),
+    $$: attr$($$)
   }
+  return _attr
 }
 
 export function getAttr (el, name, defaultValue = undefined) {
