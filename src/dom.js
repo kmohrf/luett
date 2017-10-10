@@ -8,8 +8,8 @@ export function $$ (selector, el = document) {
   return toArray(el.querySelectorAll(selector))
 }
 
-export function id (name, el = document) {
-  return el.getElementById(name)
+export function id (name) {
+  return document.getElementById(name)
 }
 
 export function replace (oldElement, newElement) {

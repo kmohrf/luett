@@ -14,6 +14,13 @@ function simpleElement () {
     </div>`
 }
 
+describe('id', () => {
+  it('queries an element by id', () => {
+    // this test relies on markup in test.html
+    expect(dom.id('mocha').id).to.be('mocha')
+  })
+})
+
 describe('attr', () => {
   const componentAttr = attr('data-component')
   const langAttr = attr('data-component-lang')
