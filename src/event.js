@@ -29,10 +29,14 @@ export function keyPressed (keyCode, modifiers, callback) {
 
 keyPressed.return = keyPressed.bind(null, 13)
 
-export function matchesMedia (query, callback) {
+export function matchesMedia (query, matchesCallback, notMatchesCallback) {
   return function () {
     if (window.matchMedia(query).matches) {
-      callback.apply(this, arguments)
+      matchesCallback.apply(this, arguments)
+    } else {
+      if (notMatchesCallback) {
+        notMatchesCallback.apply(this, arguments)
+      }
     }
   }
 }
