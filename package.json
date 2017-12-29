@@ -20,9 +20,9 @@
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
-    "bel": "^4.6.0",
-    "core-js": "^2.4.1",
-    "mocha": "^3.2.0",
+    "bel": "^5.1.5",
+    "core-js": "^2.5.3",
+    "mocha": "^4.0.1",
     "mocha-phantomjs": "^4.1.0",
     "must": "^0.13.4",
     "rollup": "^0.53.1",
@@ -33,7 +33,7 @@
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-node-resolve": "^3.0.0",
     "simple-mock": "^0.8.0",
-    "standard": "^10.0.1",
+    "standard": "^10.0.3",
     "uglify-js": "^3.3.3"
   },
   "babel": {
