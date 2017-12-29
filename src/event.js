@@ -52,9 +52,14 @@ matchesMedia.max.medium = matchesMedia.bind(null, '(max-width: 991px)')
 matchesMedia.max.large = matchesMedia.bind(null, '(max-width: 1199px)')
 matchesMedia.max.hd = matchesMedia.bind(null, '(max-width: 1919px)')
 
-export function on (el, event, callback, capture = false) {
-  el.addEventListener(event, callback, capture)
-  return { destroy: () => { el.removeEventListener(event, callback, capture) } }
+export function on (el, event, callback, options = false) {
+  const events = typeof event === 'string' ? [event] : event
+  events.forEach(event => el.addEventListener(event, callback, options))
+  return {
+    destroy: () => {
+      events.forEach(event => el.removeEventListener(event, callback, options))
+    }
+  }
 }
 
 export default { keyPressed, matchesMedia, on }
