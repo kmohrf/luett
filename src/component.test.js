@@ -30,7 +30,7 @@ describe('component', () => {
   })
 
   it('passes an element and options object to the factory', () => {
-    let callArgs
+    let callArgs = null
     component('foo', (...args) => { callArgs = args }, simpleElement())
     expect(callArgs).to.have.length(2)
     expect(callArgs[0]).to.be.an.instanceof(window.HTMLElement)
