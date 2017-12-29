@@ -3,6 +3,10 @@
   "version": "2.5.0",
   "description": "a collection of small vanilla-js utilities, helper functions and components",
   "main": "dist/luett.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kmohrf/luett.git"
+  },
   "scripts": {
     "test": "rollup -c .rollup.test.js && mocha-phantomjs test.html && standard",
     "rollup": "rollup -c .rollup.js",
