@@ -17,8 +17,9 @@
   "author": "Konrad Mohrfeldt <konrad.mohrfeldt@farbdev.org>",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
     "bel": "^4.6.0",
     "core-js": "^2.4.1",
     "mocha": "^3.2.0",
@@ -30,5 +31,28 @@
     "rollup-plugin-json": "^2.1.1",
     "rollup-plugin-node-resolve": "^3.0.0",
     "standard": "^10.0.1"
+  },
+  "babel": {
+    "plugins": [
+      "external-helpers"
+    ],
+    "presets": [
+      [
+        "env",
+        {
+          "loose": true,
+          "useBuiltIns": true,
+          "modules": false,
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "> 4%",
+              "Firefox ESR",
+              "IE 11"
+            ]
+          }
+        }
+      ]
+    ]
   }
 }
