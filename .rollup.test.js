@@ -1,26 +1,25 @@
 import babel from 'rollup-plugin-babel'
 import json from 'rollup-plugin-json'
 import resolve from 'rollup-plugin-node-resolve'
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from 'rollup-plugin-commonjs'
+import builtIns from 'rollup-plugin-node-builtins'
 
 export default {
-  entry: 'test.js',
-  dest: 'dist/luett.test.js',
-  format: "umd",
-  moduleName: require('./package.json').name,
+  input: 'test.js',
+  output: {
+    name: require('./package.json').name,
+    format: 'umd',
+    file: 'dist/luett.test.js'
+  },
   plugins: [
+    resolve(),
+    builtIns(),
+    commonjs({
+      include: 'node_modules/**'
+    }),
     json(),
     babel({
-      exclude: 'node_modules/**',
-      plugins: ['external-helpers'],
-      runtimeHelpers: true
-    }),
-    resolve({
-      jsnext: true,
-      main: true,
-    }),
-    commonjs({
-      include: 'node_modules/**',
+      plugins: ['external-helpers']
     })
   ],
 }
